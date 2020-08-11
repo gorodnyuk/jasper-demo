@@ -1,16 +1,13 @@
 package uk.gorodny.jasperreportdemo;
 
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperPrint;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.OutputStream;
 
 @RestController
 public class JasperController {
@@ -19,13 +16,15 @@ public class JasperController {
     private JasperService jasperService;
 
     @GetMapping("/jasper")
-    public void getReport(@RequestParam("name") String name,
-                          @RequestParam("surname") String surname,
-                          HttpServletResponse httpServletResponse) throws IOException, JRException {
-        JasperPrint jasperPrint = jasperService.generateReport(new Man(name, surname));
-        httpServletResponse.setContentType("application/x-pdf");
-        httpServletResponse.setHeader("Content-disposition", "attachment; filename=report.pdf");
-        OutputStream outputStream = httpServletResponse.getOutputStream();
-        JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
+    public ResponseEntity<byte[]> getReport(@RequestParam("name") String name,
+                                            @RequestParam("surname") String surname) throws IOException, JRException {
+        byte[] reportBytes = jasperService.generateReport(new Man(name, surname));
+        return ResponseEntity
+                .ok()
+                // Specify content type as PDF
+                .header("Content-Type", "application/pdf; charset=UTF-8")
+                // Tell browser to display PDF if it can
+                .header("Content-Disposition", "attachment; filename=report.pdf")
+                .body(reportBytes);
     }
 }
