@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.5.1.final using JasperReports Library version 6.5.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="da8677e0-ecdf-4644-9603-325b544ef71c">
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+    <parameter name="demoName" class="java.lang.String"/>
+    <parameter name="demoSurname" class="java.lang.String"/>
+    <queryString>
+        <![CDATA[]]>
+    </queryString>
+    <detail>
+        <band height="125" splitType="Stretch">
+            <staticText>
+                <reportElement x="96" y="51" width="100" height="30" uuid="c5ae4987-a288-4d7e-a1b9-b589b428bcaf"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <text><![CDATA[Name:]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="210" y="50" width="100" height="30" uuid="71e63404-744d-49e6-9b30-32bbf6740480"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{demoName}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="330" y="50" width="100" height="30" uuid="98fdc018-b1d6-4be0-85ca-5b328992b65d"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$P{demoSurname}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>
