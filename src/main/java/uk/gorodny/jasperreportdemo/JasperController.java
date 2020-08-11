@@ -24,7 +24,7 @@ public class JasperController {
                           HttpServletResponse httpServletResponse) throws IOException, JRException {
         JasperPrint jasperPrint = jasperService.generateReport(new Man(name, surname));
         httpServletResponse.setContentType("application/x-pdf");
-        httpServletResponse.setHeader("Content-disposition", "inline; filename=demoReport.pdf");
+        httpServletResponse.setHeader("Content-disposition", "attachment; filename=report.pdf");
         OutputStream outputStream = httpServletResponse.getOutputStream();
         JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
     }
