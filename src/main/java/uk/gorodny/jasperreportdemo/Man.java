@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 public class Man {
-    private String name;
-    private String surname;
+  private String name;
+  private String surname;
 }
